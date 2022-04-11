@@ -632,7 +632,7 @@ export function manySheets2blob(sheets) {
   };
 
   sheets.forEach((sheet, index) => {
-    let sheetName = sheet.sheetName ?? `sheet${index + 1}`;
+    let sheetName = sheet.sheetName ? sheet.sheetName : `sheet${index + 1}`;
     workbook.SheetNames.push(sheetName);
     workbook.Sheets[sheetName] = sheet.sheet;
   });
@@ -766,7 +766,7 @@ function makeJsonToSheet(
     for (let j = 0; j < template.length; j++) {
       let colKey = columnsKeys[j];
       let { key, desc } = template[j];
-      let value = rowValue[key] ?? "";
+      let value = rowValue[key] ? rowValue[key] : "";
       colsWidth[j] = updateTableCulumnsWidth(colsWidth[j], value, desc);
       sheet[colKey + row] = { v: value };
     }
