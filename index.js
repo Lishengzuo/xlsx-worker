@@ -57,7 +57,7 @@ export default class XlsxWorker {
   }
   isActive() {
     if (this.active === false) {
-      console.log("webWorker have already closed!");
+      // console.log("webWorker have already closed!");
       return false;
     }
     return true;
@@ -158,7 +158,7 @@ export default class XlsxWorker {
    */
   upload(template, callback) {
     if (!this.isActive()) return;
-    console.log("this.active", this.active);
+    // console.log("this.active", this.active);
     return new Promise((resolve) => {
       analysisUploadFile((bufferSheet, fileName) => {
         this.bindEvent(resolve);
@@ -186,7 +186,7 @@ function analysisUploadFile(callback = (value) => console.log(value)) {
     const inputDom = e.target;
     const reader = new FileReader();
     reader.onload = () => {
-      console.log("inputDom.files[0]", inputDom.files[0].name);
+      // console.log("inputDom.files[0]", inputDom.files[0].name);
       callback(reader.result, inputDom.files[0].name.split(".")[0]);
       inputDom.value = "";
     };

@@ -100,6 +100,6 @@ onmessage = function (e) {
       workbookArrayBuffer,
     ]);
   });
-  console.log("e", e.data);
+  // console.log("e", e.data);
   router.dispatch(e.data);
 };

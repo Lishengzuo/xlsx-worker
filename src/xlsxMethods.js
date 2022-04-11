@@ -227,14 +227,14 @@ export function analysisUnploadExcel(binarySheet, template = []) {
   }
 
   let date1 = new Date().getTime();
-  console.log("date1", date1 /*, XLSX, binarySheet*/);
+  // console.log("date1", date1 /*, XLSX, binarySheet*/);
   const { SheetNames, Sheets } = XLSX.read(binarySheet, { type: "buffer" });
-  let date2 = new Date().getTime();
-  console.log("date2 - date1", date2 - date1);
+  // let date2 = new Date().getTime();
+  // console.log("date2 - date1", date2 - date1);
   // console.log("Sheets", Sheets);
 
-  let date1JieXi = new Date().getTime();
-  console.log("date1JieXi", date1JieXi);
+  // let date1JieXi = new Date().getTime();
+  // console.log("date1JieXi", date1JieXi);
   let analysisResult = [];
   for (let sheetName of SheetNames) {
     let sheet = Sheets[sheetName];
@@ -272,8 +272,8 @@ export function analysisUnploadExcel(binarySheet, template = []) {
       analysisResult.push({ code: 1, data: data, sheet });
     }
   }
-  let date2JieXi = new Date().getTime();
-  console.log("date2JieXi - date1JieXi", date2JieXi - date1JieXi);
+  // let date2JieXi = new Date().getTime();
+  // console.log("date2JieXi - date1JieXi", date2JieXi - date1JieXi);
   // console.log("analysisResult", analysisResult);
   return analysisResult;
 }
@@ -637,7 +637,7 @@ export function manySheets2blob(sheets) {
     workbook.Sheets[sheetName] = sheet.sheet;
   });
 
-  console.log("translate start");
+  // console.log("translate start");
   const params = {
     workbook,
     opts: wopts,
@@ -928,12 +928,12 @@ function processErrorDataPosition(
     }
   });
 
-  console.log(
+  /* console.log(
     "测试 _errorDataPosition",
     _errorDataPosition,
     errorDataPosition,
     template
-  );
+  ); */
   let _errorDataPositionObj = {};
   for (let errorInfo of _errorDataPosition) {
     let { rowNum, columnName, reason } = errorInfo;
@@ -958,7 +958,7 @@ function processErrorDataPosition(
       };
     }
   }
-  console.log("_errorDataPositionObj", _errorDataPositionObj);
+  // console.log("_errorDataPositionObj", _errorDataPositionObj);
   return _errorDataPositionObj;
 }
 
