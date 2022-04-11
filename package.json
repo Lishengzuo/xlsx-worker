@@ -1,6 +1,6 @@
 {
   "name": "xlsx-worker",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "@babel/preset-env": "^7.16.11"
   },
   "dependencies": {
+    "worker-loader": "^3.0.8",
     "xlsx-style-ex": "^0.0.1"
   }
 }
