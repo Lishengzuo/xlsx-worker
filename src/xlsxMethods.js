@@ -121,7 +121,8 @@ function compareSheetCellAndTemplate(sheetCell, template) {
     let unMatch = [];
     for (let item of template) {
       let { desc } = item;
-      let cellKey = userFilter(sheetCell, desc, true, "desc")[0]?.cellKey;
+      let temp = userFilter(sheetCell, desc, true, "desc")[0];
+      let cellKey = temp ? temp.cellKey : undefined;
       if (cellKey === undefined) {
         unMatch.push(item);
         continue;
@@ -938,7 +939,8 @@ function processErrorDataPosition(
     let { rowNum, columnName, reason } = errorInfo;
     let curRowInExcel = parseInt(rowNum) + 2;
 
-    let columnNameDes = userFilter(template, columnName, true, "key")[0]?.desc;
+    let temp = userFilter(template, columnName, true, "key")[0];
+    let columnNameDes = temp ? temp.desc : undefined;
     if (!columnNameDes) continue;
     if (_errorDataPositionObj.hasOwnProperty(curRowInExcel)) {
       _errorDataPositionObj[curRowInExcel]["errorList"].push(
