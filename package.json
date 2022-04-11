@@ -1,0 +1,30 @@
+{
+  "name": "xlsx-worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lishengzuo/xlsx-worker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lishengzuo/xlsx-worker/issues"
+  },
+  "homepage": "https://github.com/Lishengzuo/xlsx-worker#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.16.11"
+  },
+  "dependencies": {
+    "worker-loader": "^3.0.8",
+    "xlsx-style-ex": "^0.0.1"
+  }
+}
