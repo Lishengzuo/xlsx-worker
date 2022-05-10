@@ -54,7 +54,11 @@ onmessage = function (e) {
 
     let newSheetList = [];
     for (let sheetConfig of store.errorSheets) {
-      let { lostSheetCellList, unMatchSheetCellList, sheet } = sheetConfig;
+      let {
+        lostSheetCellList = [],
+        unMatchSheetCellList = [],
+        sheet,
+      } = sheetConfig;
       let newSheet = processErrorTemplateSheet(
         lostSheetCellList,
         unMatchSheetCellList,

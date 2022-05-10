@@ -508,6 +508,18 @@ export function processErrorTemplateSheet(
     return { totalRow, tips, longestMessageLength };
   }
 
+  let sheatArea = sheet["!ref"];
+  if (!sheatArea) {
+    return {
+      "!ref": "A1:A1",
+      "!cols": [{ wpx: 300 }],
+      A1: {
+        v: "导入的EXCEl不可以存在空的sheet!",
+        s: defaultExcelStyle.sheetTitleStyle.templateErrorStyle,
+      },
+    };
+  }
+
   let { columnsKeys, total } = calculateExcelColumnsKeys(sheet["!ref"]);
   let { headerRow, sheetCell } = getImportTableHeaderNameByColumnsKey(
     sheet,

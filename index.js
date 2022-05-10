@@ -153,6 +153,12 @@ export default class XlsxWorker {
   /**
    * [upload 上传Xlsx文件]
    * @param  {[Array]} template 解析上传xlsx文件所需的模板
+   * [{
+   *    key: "", 导出Excel列的标题对应的key值
+   *    desc: "", 导出Excel列的标题
+   *    width: 120, 导出Excel的列宽: 数据类型为数值
+   *    required: false 导出Excel的列是否是必填: true or false
+   * }, ...]
    * @param  {[function]}  callback  文件解析前执行的回调
    * @return {[type]}          无返回值
    */
