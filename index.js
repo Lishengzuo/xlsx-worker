@@ -114,25 +114,17 @@ export default class XlsxWorker {
     return promise;
   }
   /**
-	 * [downErrData 导出未通过数据验证的Excel文件, 且把错误数据的位置标记出来]
-	 * @param  {[Array]} errorDataPosition 错误数据的描述数组
-	 * [{
-	    "rowIndex": 0,
-	    "errMessage": [{
-	      "columnName": "assetId",
-	      "message": "分类编号不能为空"
-	    }, {
-	      "columnName": "className",
-	      "message": "分类名称不能为空"
-	    }, {
-	      "columnName": "parentId",
-	      "message": "上级编号不能为空"
-	    }, ...]
-	  }]
-	 * @param  {[Array]} titleMessage      提示信息的自定义补充
-	 * @param  {[string]}  fileName  导出的文件名称, 无需文件后缀, 非必传
-	 * @return {[type]}                   无返回值
-	 */
+   * [downErrData 导出未通过数据验证的Excel文件, 且把错误数据的位置标记出来]
+   * @param  {[Array]} errorDataPosition 错误数据的描述数组
+   * [{
+   *    rowNum: 1,
+   *    columnName: "assetId"
+   *    message: "不能为空"
+   * }, ....]
+   * @param  {[Array]} titleMessage      提示信息的自定义补充
+   * @param  {[string]}  fileName  导出的文件名称, 无需文件后缀, 非必传
+   * @return {[type]}                   无返回值
+   */
   downErrData(errorDataPosition, titleMessage, fileName) {
     if (!this.isActive()) return;
     let promise = new Promise((resolve) => {

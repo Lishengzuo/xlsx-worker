@@ -659,7 +659,7 @@ export function manySheets2blob(sheets) {
   /*let blob = new Blob([s2ab(wbout)], {
     type: 'application/octet-stream',
   });*/
-  console.log("translate end");
+  // console.log("translate end");
   // 字符串转ArrayBuffer
   function s2ab(s) {
     let buf = new ArrayBuffer(s.length);
@@ -886,23 +886,16 @@ export function processManySheet(
 }
 
 /**
- * [processErrorDataPosition description]
- * @param  {Array}  errorDataPosition 
+ *
+ * @param {Array} errorDataPosition
  * [{
-    "rowIndex": 0,
-    "errMessage": [{
-      "columnName": "assetId",
-      "message": "分类编号不能为空"
-    }, {
-      "columnName": "className",
-      "message": "分类名称不能为空"
-    }, {
-      "columnName": "parentId",
-      "message": "上级编号不能为空"
-    }]
-  }]
- * @param  {Array}  template          [description]
- * @return {[type]}                   [description]
+ *    rowNum: 1,
+ *    columnName: "assetId"
+ *    message: "不能为空"
+ * }, ....]
+ * @param {Array} sheetCell
+ * @param {Array} template
+ * @returns
  */
 function processErrorDataPosition(
   errorDataPosition = [],
@@ -911,15 +904,15 @@ function processErrorDataPosition(
 ) {
   let excelHeaderName = {};
   for (let i = 0; i < template.length; i++) {
-    let mathFloor = Math.floor(i / 26);
-    let remainder = i % 26;
-    if (mathFloor === 0) {
-      excelHeaderName[template[i].key] = String.fromCharCode(65 + i);
-    } else {
-      excelHeaderName[template[i].key] =
-        String.fromCharCode(65 + mathFloor - 1) +
-        String.fromCharCode(65 + remainder);
-    }
+    let curImportExcelCellHeader = sheetCell[i];
+    let curImportExcelCellHeaderKey = userFilter(
+      template,
+      curImportExcelCellHeader.desc,
+      true,
+      "desc"
+    )[0].key;
+    excelHeaderName[curImportExcelCellHeaderKey] =
+      curImportExcelCellHeader.cellKey;
   }
 
   let _errorDataPosition = [];
@@ -940,12 +933,6 @@ function processErrorDataPosition(
     }
   });
 
-  /* console.log(
-    "测试 _errorDataPosition",
-    _errorDataPosition,
-    errorDataPosition,
-    template
-  ); */
   let _errorDataPositionObj = {};
   for (let errorInfo of _errorDataPosition) {
     let { rowNum, columnName, reason } = errorInfo;
@@ -970,7 +957,6 @@ function processErrorDataPosition(
       };
     }
   }
-  // console.log("_errorDataPositionObj", _errorDataPositionObj);
   return _errorDataPositionObj;
 }
 
