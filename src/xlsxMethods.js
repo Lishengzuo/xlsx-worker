@@ -902,15 +902,18 @@ function processErrorDataPosition(
   sheetCell = [],
   template
 ) {
+  if (!Array.isArray(errorDataPosition)) errorDataPosition = [];
   let excelHeaderName = {};
   for (let i = 0; i < template.length; i++) {
     let curImportExcelCellHeader = sheetCell[i];
-    let curImportExcelCellHeaderKey = userFilter(
+    let curImportExcelCellHeaderInTemplate = userFilter(
       template,
       curImportExcelCellHeader.desc,
       true,
       "desc"
-    )[0].key;
+    )[0];
+    if (!curImportExcelCellHeaderInTemplate) continue;
+    let curImportExcelCellHeaderKey = curImportExcelCellHeaderInTemplate.key;
     excelHeaderName[curImportExcelCellHeaderKey] =
       curImportExcelCellHeader.cellKey;
   }
@@ -938,8 +941,7 @@ function processErrorDataPosition(
     let { rowNum, columnName, reason } = errorInfo;
     let curRowInExcel = parseInt(rowNum) + 2;
 
-    let temp = userFilter(template, columnName, true, "key")[0];
-    let columnNameDes = temp ? temp.desc : undefined;
+    let columnNameDes = userFilter(template, columnName, true, "key")[0]?.desc;
     if (!columnNameDes) continue;
     if (_errorDataPositionObj.hasOwnProperty(curRowInExcel)) {
       _errorDataPositionObj[curRowInExcel]["errorList"].push(
@@ -957,6 +959,7 @@ function processErrorDataPosition(
       };
     }
   }
+  // console.log("_errorDataPositionObj", _errorDataPositionObj);
   return _errorDataPositionObj;
 }
 

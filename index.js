@@ -173,6 +173,20 @@ export default class XlsxWorker {
       }, []);
     });
   }
+  analysisBuffer(template, arrayBuffer, fileName) {
+    if (!this.isActive()) return;
+    return new Promise((resolve) => {
+      this.bindEvent(resolve);
+      this.fileName = fileName;
+      this.worker.postMessage(
+        {
+          eventId: "upload",
+          options: { bufferSheet: arrayBuffer, template, fileName },
+        },
+        [arrayBuffer]
+      );
+    });
+  }
 }
 
 //解析上传的Excel
