@@ -941,7 +941,15 @@ function processErrorDataPosition(
     let { rowNum, columnName, reason } = errorInfo;
     let curRowInExcel = parseInt(rowNum) + 2;
 
-    let columnNameDes = userFilter(template, columnName, true, "key")[0]?.desc;
+    let columnNameTemplateItem = userFilter(
+      template,
+      columnName,
+      true,
+      "key"
+    )[0];
+    let columnNameDes = columnNameTemplateItem
+      ? columnNameTemplateItem.desc
+      : undefined;
     if (!columnNameDes) continue;
     if (_errorDataPositionObj.hasOwnProperty(curRowInExcel)) {
       _errorDataPositionObj[curRowInExcel]["errorList"].push(

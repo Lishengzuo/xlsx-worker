@@ -193,7 +193,7 @@ export default class XlsxWorker {
 function analysisUploadFile(callback = (value) => console.log(value)) {
   let inputDom = document.createElement("input");
   inputDom.setAttribute("type", "file");
-  inputDom.setAttribute("accept", ".xlsx"); //不支持 .xls xlsx.read()会报错
+  inputDom.setAttribute("accept", ".xlsx, .xls"); //不支持 .xls xlsx.read()会报错
   inputDom.addEventListener("change", (e) => {
     const inputDom = e.target;
     const reader = new FileReader();
